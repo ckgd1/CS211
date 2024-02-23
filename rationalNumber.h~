@@ -1,0 +1,29 @@
+#ifndef rationalNumber_H
+#define rationalNumber_H
+
+using namespace std;
+
+//define the rNum class here. The data members are top and bottom.
+class rNum
+{
+ private:
+  int top;
+  int bottom;
+ public:
+  rNum();
+  rNum(int t, int b);
+  rNum operator+(const rNum& a1, const rNum& a2);
+
+};
+
+
+
+
+
+
+
+
+
+
+
+#endif

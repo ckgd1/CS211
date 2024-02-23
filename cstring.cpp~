@@ -1,0 +1,58 @@
+#include <iostream>
+#include <string>
+#include "myCstring.h"
+
+using namespace std;
+
+const char* badAr[4] = {"funky", "idiot", "stinky", "stupid"};
+char wd[10];
+char longestWd[10] = "";
+char shortestWd[10] = "abcdefghv";
+char all[111] = "";
+
+void showResult();
+
+int main()
+{
+  
+  int len;
+  int word;
+  do
+    {
+      cout << "Enter a word: ";
+      cin >> wd;
+      word ++;
+      if(binarySearch(badAr, 4, wd) == -1) 
+	{
+      //len = myStrlen(wd); 
+      if(myStrlen(wd) > myStrlen(longestWd))
+	myStrcpy(longestWd, wd);
+      if(myStrlen(wd) < myStrlen(shortestWd))
+	myStrcpy(shortestWd, wd);
+      strincat(all);
+	}
+    }
+  while (word != 10);
+  showResult();
+
+  return 0;
+}
+
+void showResult()
+{
+  cout << "The longest word: ";
+  cout << longestWd << endl;  
+
+  cout << "The shortest word: ";
+  cout << shortestWd << endl;
+
+  cout << "All words minus bad words: ";
+  cout << all; 
+
+/*
+  myStrlen();
+  if(myStrlen(wd) > myStrlen(longestWd))
+    longestWd = wd;
+  myStrcpy(longestWd, wd);
+  */
+}

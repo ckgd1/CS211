@@ -1,0 +1,88 @@
+#include "LL.h"
+#include "utility.h"
+#include <iostream>
+#include <cstdlib>
+#include <fstream>
+
+using namespace std;
+typedef string el_t;
+ 
+void buildLL(LL& l)
+{
+  while (l.isEmpty() == false)
+    {
+      l.deleteFront();
+    }
+  ifstream fin;
+  fin.open("essay.txt");
+  el_t w;
+  fin >> w;
+  string temp;
+  temp = w;
+  string wd;
+  //getline(fin, s);
+  while(fin)
+    {
+      if(l.search(w) == true)
+	l.deleteNode(w);
+      //if(l.search(w) == false)
+      else	
+	{
+	  wd = "";
+	  for(int i = 0; i < temp.length(); i++)
+	    {
+	      if(isLetter(temp[i]))
+		{
+		  wd += myToLower(temp[i]);
+		  // l.addFront(w);
+		}
+	    }
+	}
+      w = wd;	   
+      
+      l.addInOrderAscend(w);
+      /*
+	if(w < temp)
+	l.addFront(w);
+	else
+	l.addRear(w);
+      */
+      fin>> w;      
+      temp = w;
+      //fin >> w;
+    }
+  fin.close();
+}
+
+void removeBadWords(LL& l)
+{
+  ifstream fin;
+  string badw;
+  fin.open("bad.txt");
+  fin >> badw;
+  while(fin)
+    {
+      if(l.search(badw) == true)
+	l.deleteNode(badw);
+    }
+  fin.close();
+}
+
+ostream& outputToFile(ostream& fout, string s)
+{
+  ifstream fin;
+  string filename = "./dictionary/?.txt";
+  filename[13] = toMyUpper(s[0]);
+  
+  fout.open(filename.c_str());
+}
+
+int main()
+{
+  LL l1;
+  string s;
+  buildLL(l1);
+  removeBadWords(l1);
+  l1.displayAll();
+  return 0;
+}

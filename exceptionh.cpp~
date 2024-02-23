@@ -1,0 +1,29 @@
+#include "LL_T_E.h"
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+  // Underflow<int> u;
+  LL u;
+  int elem;
+
+try 
+  {
+   u.addRear(1);
+   u.deleteFront();
+   u.deleteFront();
+  }
+
+ catch(const char* m)
+   {
+     cout << m << endl;
+   }
+ cout << "After " << endl;
+ u.displayAll();
+ 
+ return 0;
+}

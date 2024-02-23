@@ -1,0 +1,61 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Person
+{
+protected:
+  static int num; // (the total number of people created) 
+  static int current_id; //(initialize it to 1000) 
+  const int ID; //(everybody at school has a unique ID such as a student id, employee id, faulty id. ID should be set to current_id.) 
+  string fn; //(default value = unknown) 
+  string ln; // (default value = unknown) 
+  string SSN; //= "unknown"; //(111-222-3333) (default value = 000-00-0000) 
+  string email; // = "unkown"; // (default value = unknown) 
+
+public:
+  Person(string f = "unknown"; string l = "unknown"; string mail = "unknown"; string s = "000-00-0000");
+  void printInfo();
+  int getNum();
+  int getID();
+};
+
+int Person::num = 0;
+int Person::current_id = 1000;
+
+Person::Person(string f, string l, string mail, string s):ID(current_id)
+{
+  fn = f;
+  ln = l;
+  email = mail;
+  SSN = s;
+  current_id ++;
+  num++;
+}
+
+void Person::printInfo()
+{
+  cout << "First Name: " << fn << "\n" << "Last Name: " << ln << "\n" << "Email: " << email << "\n" << "SSN: " << SSN << "\n" << "ID: " << ID << endl;
+}
+
+class Faculty : public Person
+{
+private:
+  int departid;
+  int yrs;
+
+public:
+  Faculty(string fn = "unknown", string ln = "unknown", int d = -1, int y = -1): Person(fn, ln)
+  {
+    departid = d;
+    yrs = y;
+}; 
+
+
+
+
+int main()
+{
+
+  return 0; 
+}

@@ -1,0 +1,31 @@
+/********************************************************
+CS111 Lab on c-strings
+Template prepared by Kazumi Slott
+********************************************************/
+#include <iostream>
+using namespace std;
+
+void myStrcat(char dest[], const char source[]);
+
+int main()
+{
+  char str2[80] = "Dave ";
+  myStrcat(str2, "Smith");
+  cout << str2 << endl; //Dave Smith
+
+  return 0;
+}
+
+void myStrcat(char dest[], const char source[])
+{
+  int d;
+
+  //Move d to the end of dest ('\0')
+
+
+  //copy each character from source to dest
+
+
+  //place '\0' at the end of dest
+ 
+}

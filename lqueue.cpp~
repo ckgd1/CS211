@@ -1,0 +1,102 @@
+#include "lqueue.h"
+#include <iostream>
+#include <cstdlib>
+
+LQueue::LQueue()
+{
+  front = NULL;
+  rear = NULL;
+  count = 0;
+}
+
+void LQueue::addRear(el_t el)
+{
+  // cout << front << endl;
+  //cout << rear << endl;
+  if(isEmpty())
+    {
+      rear = new node;
+      front = rear;
+    }
+  else
+    {
+      //  node* p = new node;
+      rear -> next = new node;
+      rear = rear ->next;
+    }
+  rear -> next = NULL;
+  count ++;
+  rear->elem = el;
+  //cout << "end of add" <<endl;  
+}
+
+void LQueue::displayAll()
+{
+  node *p = front;
+  if(isEmpty() == true)
+    cout << "[empty]" << endl;
+  else 
+    {
+      while(p != NULL)
+	{
+	  cout << p->elem;
+	  p =  p->next;
+	}
+    }
+}
+
+bool LQueue::isEmpty()
+{
+  return (front == NULL && rear == NULL && count == 0) ? true : false;
+}
+
+LQueue::~LQueue()
+{
+  while(isEmpty() == false)
+    //if(count == 1)
+    deleteFront();
+  //else if(count > 1
+    /*
+if (ar != NULL)
+  delete [] ar;
+    */
+}
+el_t LQueue::deleteFront()
+{
+  if(isEmpty() == true)
+    queueError ("Error: list is empty.");
+  else
+    {
+      el_t temp = front -> elem;
+      node *second;
+      second = front ->next;      
+      delete front;
+      if(second == NULL)
+	front = rear = second;
+      else
+	front = second;
+      count --;
+      return temp;
+    }
+}
+void LQueue::queueError(string msg)
+{
+  cout << "Queue Error" << endl;
+  exit(1);
+}
+
+void LQueue::printAllReverse()
+{
+  printAllReverse(front);
+}
+
+void LQueue::printAllReverse(node* p)
+{
+  if(p == NULL)
+    return;
+  else
+    {
+      printAllReverse(p -> next);
+      cout << p -> elem;
+    }
+}

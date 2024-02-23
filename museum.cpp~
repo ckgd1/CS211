@@ -1,0 +1,99 @@
+#include <iostream>
+#include <fstream>
+#include "array.h"
+#include "/cs/slott/cs211/checkInput.h" 
+
+int showMenu();
+void getVisitorInfo(string c[], int a[], double h[], int& v);
+bool checkPassword(int password);
+void showStatistic(string c[], int a[], double h[], int& v);
+
+int main ()
+{
+  string country[100];
+    int age[100];
+  double hours[100];
+  int visitornum = 0;
+  int choice = showMenu();
+  int pw = 0;  
+  while(choice == 1)
+    {
+    getVisitorInfo(country,age,hours,visitornum);
+  choice = showMenu();
+    }  
+  if (choice == 2)
+    {
+      checkPassword(pw);
+      showStatistic(country,age,hours,visitornum);
+    }     
+  else 
+    {
+      while (pw != 5678)
+	{
+	  choice = showMenu();
+	  checkPassword(pw);	  
+	  cout << endl;
+	  cout << endl;
+	}  
+    }
+  return 0;
+}
+
+int showMenu()
+{
+  //we will be showing the user the menu and they can decide if they are a visitor or museum staff  
+  cout << "==================" << endl;
+  cout << "1. Visitor" << endl;
+  cout << "2. Museum Staff" << endl;
+  cout << "Enter your choice: " ;
+  int choice = getData(1,2, "Invalid Choice. Enter 1 or 2: "); 
+  
+  //cin >> choice;
+
+  return choice;
+}
+
+void getVisitorInfo(string c[], int a[], double h[], int& v)
+{
+  // int choice;// = getData(1,2, "Invalid Choice. Enter 1 or 2: ");
+  //if (choice == 1)
+  //{
+  // int visitors = 0;
+      cout << "Enter your country: ";
+      cin >> c[v];
+      
+      cout << "Enter your age: ";
+      cin >> a[v];
+      
+      cout << "Enter the number of hours you explored: ";
+      cin>> h[v];       
+     
+      v++; // }
+}
+
+bool checkPassword(int password)
+{ 
+  // int choice;
+  // if(choice == 2)
+  cout <<  "Enter the password: ";
+  cin >> password;
+  if(password != 5678)
+    {   
+      cout << "Password is wrong.";
+      return false;
+    }  
+  else 
+    return true;
+}
+
+void showStatistic(string c[], int a[], double h[], int& v)
+{
+  cout << "The total number of visitors is " << v  << endl;
+  cout << " ----- The names of the countries of visitors ----- " << endl;
+  sort(c, v+1);
+  print(c,v+1);
+  cout << endl;  
+
+}
+
+
